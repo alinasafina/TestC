@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="20220526-02-initial-project" author="Alina Safina" context="initial">
+        <createTable tableName="project">
+
+            <column name="id" type="int" autoIncrement="true" remarks="Идентификатор">
+                <constraints primaryKey="true" primaryKeyName="project_id_pk"/>
+            </column>
+            <column name="name" type="varchar(150)" remarks="Наименование проекта"/>
+            <column name="start_date" type="TIMESTAMP" remarks="Дата начала проекта"/>
+            <column name="finish_date" type="TIMESTAMP" remarks="Дата окончания проекта"/>
+            <column name="status" type="varchar(50)" remarks="Статус проекта"/>
+            <column name="project_manager_id" type="int" remarks="Руководитель проекта"/>
+
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="project_manager_id"
+                                 baseTableName="project"
+                                 constraintName="fk_pm_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+    </changeSet>
+</databaseChangeLog>

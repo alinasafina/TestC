@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="20220526-03-initial-register-project-executor" author="Alina Safina" context="initial">
+        <createTable tableName="register_project_executor">
+
+            <column name="project_id" type="int" remarks="Идентификатор проекта">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="project_executor_fk"
+                        referencedTableName="project"
+                        referencedColumnNames="id"
+                        deleteCascade="true"
+                />
+            </column>
+            <column name="employee_id" type="int" remarks="Идентификатор исполнителя">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="executor_project_fk"
+                        referencedTableName="employee"
+                        referencedColumnNames="id"
+                        deleteCascade="true"
+                />
+            </column>
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
